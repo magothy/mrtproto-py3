@@ -20,7 +20,7 @@ def get_version(rel_path):
 setup(
     name="mrtproto",
     version=get_version("mrtproto/version.py"),
-    python_requires='>=3.6',
+    python_requires='>=3.8',
     packages=['mrtproto'],
-    install_requires=['python3-protobuf']
+    install_requires=['protobuf']
 )
