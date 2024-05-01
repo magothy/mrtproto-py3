@@ -383,3 +383,47 @@ class VehicleStateIf(_message.Message):
     health_items: _containers.RepeatedCompositeFieldContainer[VehicleStateIf.HealthItem]
     fault_response: VehicleStateIf.FaultResponse
     def __init__(self, ttag_ns: _Optional[int] = ..., vehicle_data: _Optional[_Union[VehicleData, _Mapping]] = ..., mode: _Optional[_Union[VehicleStateIf.Mode, str]] = ..., health_items: _Optional[_Iterable[_Union[VehicleStateIf.HealthItem, _Mapping]]] = ..., fault_response: _Optional[_Union[VehicleStateIf.FaultResponse, _Mapping]] = ...) -> None: ...
+
+class MavlinkMissionItemInt(_message.Message):
+    __slots__ = ("target_system", "target_component", "mission_type", "seq", "command", "frame", "current", "autocontinue", "param1", "param2", "param3", "param4", "x", "y", "z")
+    TARGET_SYSTEM_FIELD_NUMBER: _ClassVar[int]
+    TARGET_COMPONENT_FIELD_NUMBER: _ClassVar[int]
+    MISSION_TYPE_FIELD_NUMBER: _ClassVar[int]
+    SEQ_FIELD_NUMBER: _ClassVar[int]
+    COMMAND_FIELD_NUMBER: _ClassVar[int]
+    FRAME_FIELD_NUMBER: _ClassVar[int]
+    CURRENT_FIELD_NUMBER: _ClassVar[int]
+    AUTOCONTINUE_FIELD_NUMBER: _ClassVar[int]
+    PARAM1_FIELD_NUMBER: _ClassVar[int]
+    PARAM2_FIELD_NUMBER: _ClassVar[int]
+    PARAM3_FIELD_NUMBER: _ClassVar[int]
+    PARAM4_FIELD_NUMBER: _ClassVar[int]
+    X_FIELD_NUMBER: _ClassVar[int]
+    Y_FIELD_NUMBER: _ClassVar[int]
+    Z_FIELD_NUMBER: _ClassVar[int]
+    target_system: int
+    target_component: int
+    mission_type: int
+    seq: int
+    command: int
+    frame: int
+    current: bool
+    autocontinue: bool
+    param1: float
+    param2: float
+    param3: float
+    param4: float
+    x: int
+    y: int
+    z: int
+    def __init__(self, target_system: _Optional[int] = ..., target_component: _Optional[int] = ..., mission_type: _Optional[int] = ..., seq: _Optional[int] = ..., command: _Optional[int] = ..., frame: _Optional[int] = ..., current: bool = ..., autocontinue: bool = ..., param1: _Optional[float] = ..., param2: _Optional[float] = ..., param3: _Optional[float] = ..., param4: _Optional[float] = ..., x: _Optional[int] = ..., y: _Optional[int] = ..., z: _Optional[int] = ...) -> None: ...
+
+class MavlinkMission(_message.Message):
+    __slots__ = ("mission_items", "fence_items", "rally_items")
+    MISSION_ITEMS_FIELD_NUMBER: _ClassVar[int]
+    FENCE_ITEMS_FIELD_NUMBER: _ClassVar[int]
+    RALLY_ITEMS_FIELD_NUMBER: _ClassVar[int]
+    mission_items: _containers.RepeatedCompositeFieldContainer[MavlinkMissionItemInt]
+    fence_items: _containers.RepeatedCompositeFieldContainer[MavlinkMissionItemInt]
+    rally_items: _containers.RepeatedCompositeFieldContainer[MavlinkMissionItemInt]
+    def __init__(self, mission_items: _Optional[_Iterable[_Union[MavlinkMissionItemInt, _Mapping]]] = ..., fence_items: _Optional[_Iterable[_Union[MavlinkMissionItemInt, _Mapping]]] = ..., rally_items: _Optional[_Iterable[_Union[MavlinkMissionItemInt, _Mapping]]] = ...) -> None: ...
