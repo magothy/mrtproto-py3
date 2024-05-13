@@ -22,5 +22,5 @@ setup(
     version=get_version("mrtproto/version.py"),
     python_requires='>=3.8',
     packages=['mrtproto'],
-    install_requires=['protobuf']
+    install_requires=['wheel', 'protobuf']
 )
