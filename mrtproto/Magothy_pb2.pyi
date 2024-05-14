@@ -82,8 +82,18 @@ class WaterCurrent(_message.Message):
     direction_deg: float
     def __init__(self, speed_mps: _Optional[float] = ..., direction_deg: _Optional[float] = ...) -> None: ...
 
+class FuelGauge(_message.Message):
+    __slots__ = ("voltage_V", "current_A", "state_of_charge_percent")
+    VOLTAGE_V_FIELD_NUMBER: _ClassVar[int]
+    CURRENT_A_FIELD_NUMBER: _ClassVar[int]
+    STATE_OF_CHARGE_PERCENT_FIELD_NUMBER: _ClassVar[int]
+    voltage_V: float
+    current_A: float
+    state_of_charge_percent: float
+    def __init__(self, voltage_V: _Optional[float] = ..., current_A: _Optional[float] = ..., state_of_charge_percent: _Optional[float] = ...) -> None: ...
+
 class VehicleData(_message.Message):
-    __slots__ = ("position", "position_source", "position_ttag_ns_steady", "attitude", "attitude_source", "attitude_ttag_ns_steady", "angular_rate", "angular_rate_source", "angular_rate_ttag_ns_steady", "acceleration", "acceleration_source", "acceleration_ttag_ns_steady", "magnetic_field", "magnetic_field_source", "magnetic_field_ttag_ns_steady", "depth_m", "depth_source", "depth_ttag_ns_steady", "altitude_m", "altitude_source", "altitude_ttag_ns_steady", "speed_mps", "speed_source", "speed_ttag_ns_steady", "course_deg", "course_source", "course_ttag_ns_steady", "body_velocity", "body_velocity_source", "body_velocity_ttag_ns_steady", "water_current", "water_current_source", "water_current_ttag_ns_steady", "water_relative_speed_mps", "water_relative_speed_source", "water_relative_speed_ttag_ns_steady")
+    __slots__ = ("position", "position_source", "position_ttag_ns_steady", "attitude", "attitude_source", "attitude_ttag_ns_steady", "angular_rate", "angular_rate_source", "angular_rate_ttag_ns_steady", "acceleration", "acceleration_source", "acceleration_ttag_ns_steady", "magnetic_field", "magnetic_field_source", "magnetic_field_ttag_ns_steady", "depth_m", "depth_source", "depth_ttag_ns_steady", "altitude_m", "altitude_source", "altitude_ttag_ns_steady", "speed_mps", "speed_source", "speed_ttag_ns_steady", "course_deg", "course_source", "course_ttag_ns_steady", "body_velocity", "body_velocity_source", "body_velocity_ttag_ns_steady", "water_current", "water_current_source", "water_current_ttag_ns_steady", "water_relative_speed_mps", "water_relative_speed_source", "water_relative_speed_ttag_ns_steady", "fuel_gauge", "fuel_gauge_source", "fuel_gauge_ttag_ns_steady")
     class DataSource(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
         __slots__ = ()
         DS_NODATA: _ClassVar[VehicleData.DataSource]
@@ -144,6 +154,9 @@ class VehicleData(_message.Message):
     WATER_RELATIVE_SPEED_MPS_FIELD_NUMBER: _ClassVar[int]
     WATER_RELATIVE_SPEED_SOURCE_FIELD_NUMBER: _ClassVar[int]
     WATER_RELATIVE_SPEED_TTAG_NS_STEADY_FIELD_NUMBER: _ClassVar[int]
+    FUEL_GAUGE_FIELD_NUMBER: _ClassVar[int]
+    FUEL_GAUGE_SOURCE_FIELD_NUMBER: _ClassVar[int]
+    FUEL_GAUGE_TTAG_NS_STEADY_FIELD_NUMBER: _ClassVar[int]
     position: Position
     position_source: VehicleData.DataSource
     position_ttag_ns_steady: int
@@ -180,7 +193,10 @@ class VehicleData(_message.Message):
     water_relative_speed_mps: float
     water_relative_speed_source: VehicleData.DataSource
     water_relative_speed_ttag_ns_steady: int
-    def __init__(self, position: _Optional[_Union[Position, _Mapping]] = ..., position_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., position_ttag_ns_steady: _Optional[int] = ..., attitude: _Optional[_Union[Euler, _Mapping]] = ..., attitude_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., attitude_ttag_ns_steady: _Optional[int] = ..., angular_rate: _Optional[_Union[AngularRate, _Mapping]] = ..., angular_rate_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., angular_rate_ttag_ns_steady: _Optional[int] = ..., acceleration: _Optional[_Union[Acceleration, _Mapping]] = ..., acceleration_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., acceleration_ttag_ns_steady: _Optional[int] = ..., magnetic_field: _Optional[_Union[MagneticField, _Mapping]] = ..., magnetic_field_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., magnetic_field_ttag_ns_steady: _Optional[int] = ..., depth_m: _Optional[float] = ..., depth_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., depth_ttag_ns_steady: _Optional[int] = ..., altitude_m: _Optional[float] = ..., altitude_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., altitude_ttag_ns_steady: _Optional[int] = ..., speed_mps: _Optional[float] = ..., speed_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., speed_ttag_ns_steady: _Optional[int] = ..., course_deg: _Optional[float] = ..., course_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., course_ttag_ns_steady: _Optional[int] = ..., body_velocity: _Optional[_Union[BodyVelocity, _Mapping]] = ..., body_velocity_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., body_velocity_ttag_ns_steady: _Optional[int] = ..., water_current: _Optional[_Union[WaterCurrent, _Mapping]] = ..., water_current_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., water_current_ttag_ns_steady: _Optional[int] = ..., water_relative_speed_mps: _Optional[float] = ..., water_relative_speed_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., water_relative_speed_ttag_ns_steady: _Optional[int] = ...) -> None: ...
+    fuel_gauge: FuelGauge
+    fuel_gauge_source: VehicleData.DataSource
+    fuel_gauge_ttag_ns_steady: int
+    def __init__(self, position: _Optional[_Union[Position, _Mapping]] = ..., position_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., position_ttag_ns_steady: _Optional[int] = ..., attitude: _Optional[_Union[Euler, _Mapping]] = ..., attitude_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., attitude_ttag_ns_steady: _Optional[int] = ..., angular_rate: _Optional[_Union[AngularRate, _Mapping]] = ..., angular_rate_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., angular_rate_ttag_ns_steady: _Optional[int] = ..., acceleration: _Optional[_Union[Acceleration, _Mapping]] = ..., acceleration_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., acceleration_ttag_ns_steady: _Optional[int] = ..., magnetic_field: _Optional[_Union[MagneticField, _Mapping]] = ..., magnetic_field_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., magnetic_field_ttag_ns_steady: _Optional[int] = ..., depth_m: _Optional[float] = ..., depth_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., depth_ttag_ns_steady: _Optional[int] = ..., altitude_m: _Optional[float] = ..., altitude_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., altitude_ttag_ns_steady: _Optional[int] = ..., speed_mps: _Optional[float] = ..., speed_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., speed_ttag_ns_steady: _Optional[int] = ..., course_deg: _Optional[float] = ..., course_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., course_ttag_ns_steady: _Optional[int] = ..., body_velocity: _Optional[_Union[BodyVelocity, _Mapping]] = ..., body_velocity_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., body_velocity_ttag_ns_steady: _Optional[int] = ..., water_current: _Optional[_Union[WaterCurrent, _Mapping]] = ..., water_current_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., water_current_ttag_ns_steady: _Optional[int] = ..., water_relative_speed_mps: _Optional[float] = ..., water_relative_speed_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., water_relative_speed_ttag_ns_steady: _Optional[int] = ..., fuel_gauge: _Optional[_Union[FuelGauge, _Mapping]] = ..., fuel_gauge_source: _Optional[_Union[VehicleData.DataSource, str]] = ..., fuel_gauge_ttag_ns_steady: _Optional[int] = ...) -> None: ...
 
 class AhrsIf(_message.Message):
     __slots__ = ("angular_rate", "acceleration", "magfield", "euler")
