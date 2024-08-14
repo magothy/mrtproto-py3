@@ -1,10 +1,23 @@
 from google.protobuf import timestamp_pb2 as _timestamp_pb2
+from google.protobuf import wrappers_pb2 as _wrappers_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Mapping, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
+
+class Color(_message.Message):
+    __slots__ = ("red", "green", "blue", "alpha")
+    RED_FIELD_NUMBER: _ClassVar[int]
+    GREEN_FIELD_NUMBER: _ClassVar[int]
+    BLUE_FIELD_NUMBER: _ClassVar[int]
+    ALPHA_FIELD_NUMBER: _ClassVar[int]
+    red: float
+    green: float
+    blue: float
+    alpha: _wrappers_pb2.FloatValue
+    def __init__(self, red: _Optional[float] = ..., green: _Optional[float] = ..., blue: _Optional[float] = ..., alpha: _Optional[_Union[_wrappers_pb2.FloatValue, _Mapping]] = ...) -> None: ...
 
 class FramePrediction(_message.Message):
     __slots__ = ("x", "y", "width", "height", "confidence", "class_id", "class_name", "class_color")
@@ -23,8 +36,8 @@ class FramePrediction(_message.Message):
     confidence: float
     class_id: int
     class_name: str
-    class_color: str
-    def __init__(self, x: _Optional[float] = ..., y: _Optional[float] = ..., width: _Optional[float] = ..., height: _Optional[float] = ..., confidence: _Optional[float] = ..., class_id: _Optional[int] = ..., class_name: _Optional[str] = ..., class_color: _Optional[str] = ...) -> None: ...
+    class_color: Color
+    def __init__(self, x: _Optional[float] = ..., y: _Optional[float] = ..., width: _Optional[float] = ..., height: _Optional[float] = ..., confidence: _Optional[float] = ..., class_id: _Optional[int] = ..., class_name: _Optional[str] = ..., class_color: _Optional[_Union[Color, _Mapping]] = ...) -> None: ...
 
 class Frame(_message.Message):
     __slots__ = ("frame_number", "ttag_system", "ttag_steady_ns", "prediction_duration_ms", "predictions")
