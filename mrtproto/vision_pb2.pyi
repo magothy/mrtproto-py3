@@ -1,6 +1,7 @@
 from google.protobuf import timestamp_pb2 as _timestamp_pb2
 from google.protobuf import wrappers_pb2 as _wrappers_pb2
 from google.protobuf.internal import containers as _containers
+from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Mapping, Optional as _Optional, Union as _Union
@@ -54,9 +55,20 @@ class Frame(_message.Message):
     def __init__(self, frame_number: _Optional[int] = ..., ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., prediction_duration_ms: _Optional[int] = ..., predictions: _Optional[_Iterable[_Union[FramePrediction, _Mapping]]] = ...) -> None: ...
 
 class OccupancyMap(_message.Message):
-    __slots__ = ("ttag_system", "ttag_steady_ns", "lat_deg", "lon_deg", "width_m", "height_m", "width_px", "height_px", "grid")
+    __slots__ = ("ttag_system", "ttag_steady_ns", "type", "lat_deg", "lon_deg", "width_m", "height_m", "width_px", "height_px", "grid")
+    class Type(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = ()
+        UNKNOWN: _ClassVar[OccupancyMap.Type]
+        EMPTY: _ClassVar[OccupancyMap.Type]
+        OCCUPIED: _ClassVar[OccupancyMap.Type]
+        MERGED: _ClassVar[OccupancyMap.Type]
+    UNKNOWN: OccupancyMap.Type
+    EMPTY: OccupancyMap.Type
+    OCCUPIED: OccupancyMap.Type
+    MERGED: OccupancyMap.Type
     TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
     TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
+    TYPE_FIELD_NUMBER: _ClassVar[int]
     LAT_DEG_FIELD_NUMBER: _ClassVar[int]
     LON_DEG_FIELD_NUMBER: _ClassVar[int]
     WIDTH_M_FIELD_NUMBER: _ClassVar[int]
@@ -66,6 +78,7 @@ class OccupancyMap(_message.Message):
     GRID_FIELD_NUMBER: _ClassVar[int]
     ttag_system: _timestamp_pb2.Timestamp
     ttag_steady_ns: int
+    type: OccupancyMap.Type
     lat_deg: float
     lon_deg: float
     width_m: float
@@ -73,4 +86,4 @@ class OccupancyMap(_message.Message):
     width_px: int
     height_px: int
     grid: bytes
-    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., width_m: _Optional[float] = ..., height_m: _Optional[float] = ..., width_px: _Optional[int] = ..., height_px: _Optional[int] = ..., grid: _Optional[bytes] = ...) -> None: ...
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., type: _Optional[_Union[OccupancyMap.Type, str]] = ..., lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., width_m: _Optional[float] = ..., height_m: _Optional[float] = ..., width_px: _Optional[int] = ..., height_px: _Optional[int] = ..., grid: _Optional[bytes] = ...) -> None: ...
