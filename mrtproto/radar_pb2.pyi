@@ -54,8 +54,9 @@ class Spokes(_message.Message):
     def __init__(self, num_spoke: _Optional[int] = ..., first_spoke_index: _Optional[int] = ..., range_m: _Optional[float] = ..., spokes: _Optional[_Iterable[bytes]] = ...) -> None: ...
 
 class Info(_message.Message):
-    __slots__ = ("timestamp", "state", "gain", "rain", "sea", "range", "scan_speed", "spokes")
+    __slots__ = ("timestamp", "ttag_steady_ns", "state", "gain", "rain", "sea", "range", "scan_speed", "spokes")
     TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
+    TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
     STATE_FIELD_NUMBER: _ClassVar[int]
     GAIN_FIELD_NUMBER: _ClassVar[int]
     RAIN_FIELD_NUMBER: _ClassVar[int]
@@ -64,6 +65,7 @@ class Info(_message.Message):
     SCAN_SPEED_FIELD_NUMBER: _ClassVar[int]
     SPOKES_FIELD_NUMBER: _ClassVar[int]
     timestamp: _timestamp_pb2.Timestamp
+    ttag_steady_ns: int
     state: State
     gain: int
     rain: int
@@ -71,7 +73,7 @@ class Info(_message.Message):
     range: int
     scan_speed: int
     spokes: Spokes
-    def __init__(self, timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., state: _Optional[_Union[State, str]] = ..., gain: _Optional[int] = ..., rain: _Optional[int] = ..., sea: _Optional[int] = ..., range: _Optional[int] = ..., scan_speed: _Optional[int] = ..., spokes: _Optional[_Union[Spokes, _Mapping]] = ...) -> None: ...
+    def __init__(self, timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., state: _Optional[_Union[State, str]] = ..., gain: _Optional[int] = ..., rain: _Optional[int] = ..., sea: _Optional[int] = ..., range: _Optional[int] = ..., scan_speed: _Optional[int] = ..., spokes: _Optional[_Union[Spokes, _Mapping]] = ...) -> None: ...
 
 class Command(_message.Message):
     __slots__ = ("command", "value")
