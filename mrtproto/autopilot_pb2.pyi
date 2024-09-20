@@ -309,7 +309,13 @@ class GpsIf(_message.Message):
     def __init__(self, rmc_data: _Optional[_Union[GpsIf.RmcData, _Mapping]] = ..., gga_data: _Optional[_Union[GpsIf.GgaData, _Mapping]] = ...) -> None: ...
 
 class ObstacleIf(_message.Message):
-    __slots__ = ("id", "circle", "polygon")
+    __slots__ = ("id", "circle", "polygon", "zone_type", "is_stationary", "lifespan_s", "course_deg", "speed_mps", "point_of_interest")
+    class ZoneType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = ()
+        ZONE_KEEP_OUT: _ClassVar[ObstacleIf.ZoneType]
+        ZONE_KEEP_IN: _ClassVar[ObstacleIf.ZoneType]
+    ZONE_KEEP_OUT: ObstacleIf.ZoneType
+    ZONE_KEEP_IN: ObstacleIf.ZoneType
     class Circle(_message.Message):
         __slots__ = ("origin", "radius_m")
         ORIGIN_FIELD_NUMBER: _ClassVar[int]
@@ -325,10 +331,30 @@ class ObstacleIf(_message.Message):
     ID_FIELD_NUMBER: _ClassVar[int]
     CIRCLE_FIELD_NUMBER: _ClassVar[int]
     POLYGON_FIELD_NUMBER: _ClassVar[int]
+    ZONE_TYPE_FIELD_NUMBER: _ClassVar[int]
+    IS_STATIONARY_FIELD_NUMBER: _ClassVar[int]
+    LIFESPAN_S_FIELD_NUMBER: _ClassVar[int]
+    COURSE_DEG_FIELD_NUMBER: _ClassVar[int]
+    SPEED_MPS_FIELD_NUMBER: _ClassVar[int]
+    POINT_OF_INTEREST_FIELD_NUMBER: _ClassVar[int]
     id: str
     circle: ObstacleIf.Circle
     polygon: ObstacleIf.Polygon
-    def __init__(self, id: _Optional[str] = ..., circle: _Optional[_Union[ObstacleIf.Circle, _Mapping]] = ..., polygon: _Optional[_Union[ObstacleIf.Polygon, _Mapping]] = ...) -> None: ...
+    zone_type: ObstacleIf.ZoneType
+    is_stationary: bool
+    lifespan_s: float
+    course_deg: float
+    speed_mps: float
+    point_of_interest: Position
+    def __init__(self, id: _Optional[str] = ..., circle: _Optional[_Union[ObstacleIf.Circle, _Mapping]] = ..., polygon: _Optional[_Union[ObstacleIf.Polygon, _Mapping]] = ..., zone_type: _Optional[_Union[ObstacleIf.ZoneType, str]] = ..., is_stationary: bool = ..., lifespan_s: _Optional[float] = ..., course_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ..., point_of_interest: _Optional[_Union[Position, _Mapping]] = ...) -> None: ...
+
+class Path(_message.Message):
+    __slots__ = ("vertices", "obstacles")
+    VERTICES_FIELD_NUMBER: _ClassVar[int]
+    OBSTACLES_FIELD_NUMBER: _ClassVar[int]
+    vertices: _containers.RepeatedCompositeFieldContainer[Position]
+    obstacles: _containers.RepeatedCompositeFieldContainer[ObstacleIf]
+    def __init__(self, vertices: _Optional[_Iterable[_Union[Position, _Mapping]]] = ..., obstacles: _Optional[_Iterable[_Union[ObstacleIf, _Mapping]]] = ...) -> None: ...
 
 class VehicleStateIf(_message.Message):
     __slots__ = ("ttag_ns", "vehicle_data", "mode", "health_items", "fault_response")
