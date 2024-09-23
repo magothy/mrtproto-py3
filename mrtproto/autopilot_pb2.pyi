@@ -1,3 +1,4 @@
+from google.protobuf import timestamp_pb2 as _timestamp_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -349,12 +350,16 @@ class ObstacleIf(_message.Message):
     def __init__(self, id: _Optional[str] = ..., circle: _Optional[_Union[ObstacleIf.Circle, _Mapping]] = ..., polygon: _Optional[_Union[ObstacleIf.Polygon, _Mapping]] = ..., zone_type: _Optional[_Union[ObstacleIf.ZoneType, str]] = ..., is_stationary: bool = ..., lifespan_s: _Optional[float] = ..., course_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ..., point_of_interest: _Optional[_Union[Position, _Mapping]] = ...) -> None: ...
 
 class Path(_message.Message):
-    __slots__ = ("vertices", "obstacles")
+    __slots__ = ("timestamp", "ttag_steady_ns", "vertices", "obstacles")
+    TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
+    TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
     VERTICES_FIELD_NUMBER: _ClassVar[int]
     OBSTACLES_FIELD_NUMBER: _ClassVar[int]
+    timestamp: _timestamp_pb2.Timestamp
+    ttag_steady_ns: int
     vertices: _containers.RepeatedCompositeFieldContainer[Position]
     obstacles: _containers.RepeatedCompositeFieldContainer[ObstacleIf]
-    def __init__(self, vertices: _Optional[_Iterable[_Union[Position, _Mapping]]] = ..., obstacles: _Optional[_Iterable[_Union[ObstacleIf, _Mapping]]] = ...) -> None: ...
+    def __init__(self, timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., vertices: _Optional[_Iterable[_Union[Position, _Mapping]]] = ..., obstacles: _Optional[_Iterable[_Union[ObstacleIf, _Mapping]]] = ...) -> None: ...
 
 class VehicleStateIf(_message.Message):
     __slots__ = ("ttag_ns", "vehicle_data", "mode", "health_items", "fault_response")
