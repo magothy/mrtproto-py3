@@ -464,8 +464,8 @@ class MavlinkMissionItemInt(_message.Message):
     param4: float
     x: int
     y: int
-    z: int
-    def __init__(self, target_system: _Optional[int] = ..., target_component: _Optional[int] = ..., mission_type: _Optional[int] = ..., seq: _Optional[int] = ..., command: _Optional[int] = ..., frame: _Optional[int] = ..., current: bool = ..., autocontinue: bool = ..., param1: _Optional[float] = ..., param2: _Optional[float] = ..., param3: _Optional[float] = ..., param4: _Optional[float] = ..., x: _Optional[int] = ..., y: _Optional[int] = ..., z: _Optional[int] = ...) -> None: ...
+    z: float
+    def __init__(self, target_system: _Optional[int] = ..., target_component: _Optional[int] = ..., mission_type: _Optional[int] = ..., seq: _Optional[int] = ..., command: _Optional[int] = ..., frame: _Optional[int] = ..., current: bool = ..., autocontinue: bool = ..., param1: _Optional[float] = ..., param2: _Optional[float] = ..., param3: _Optional[float] = ..., param4: _Optional[float] = ..., x: _Optional[int] = ..., y: _Optional[int] = ..., z: _Optional[float] = ...) -> None: ...
 
 class MavlinkMission(_message.Message):
     __slots__ = ("mission_items", "fence_items", "rally_items")
