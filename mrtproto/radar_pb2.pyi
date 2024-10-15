@@ -41,6 +41,16 @@ COMMAND_TURN_OFF: CommandType
 COMMAND_SET_RANGE: CommandType
 COMMAND_SET_GAIN: CommandType
 
+class Pose(_message.Message):
+    __slots__ = ("lat_deg", "lon_deg", "heading_deg")
+    LAT_DEG_FIELD_NUMBER: _ClassVar[int]
+    LON_DEG_FIELD_NUMBER: _ClassVar[int]
+    HEADING_DEG_FIELD_NUMBER: _ClassVar[int]
+    lat_deg: float
+    lon_deg: float
+    heading_deg: float
+    def __init__(self, lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., heading_deg: _Optional[float] = ...) -> None: ...
+
 class Spokes(_message.Message):
     __slots__ = ("num_spoke", "first_spoke_index", "range_m", "spokes")
     NUM_SPOKE_FIELD_NUMBER: _ClassVar[int]
@@ -54,7 +64,7 @@ class Spokes(_message.Message):
     def __init__(self, num_spoke: _Optional[int] = ..., first_spoke_index: _Optional[int] = ..., range_m: _Optional[float] = ..., spokes: _Optional[_Iterable[bytes]] = ...) -> None: ...
 
 class Info(_message.Message):
-    __slots__ = ("timestamp", "ttag_steady_ns", "state", "gain", "rain", "sea", "range", "scan_speed", "spokes")
+    __slots__ = ("timestamp", "ttag_steady_ns", "state", "gain", "rain", "sea", "range", "scan_speed", "spokes", "pose")
     TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
     TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
     STATE_FIELD_NUMBER: _ClassVar[int]
@@ -64,6 +74,7 @@ class Info(_message.Message):
     RANGE_FIELD_NUMBER: _ClassVar[int]
     SCAN_SPEED_FIELD_NUMBER: _ClassVar[int]
     SPOKES_FIELD_NUMBER: _ClassVar[int]
+    POSE_FIELD_NUMBER: _ClassVar[int]
     timestamp: _timestamp_pb2.Timestamp
     ttag_steady_ns: int
     state: State
@@ -73,7 +84,8 @@ class Info(_message.Message):
     range: int
     scan_speed: int
     spokes: Spokes
-    def __init__(self, timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., state: _Optional[_Union[State, str]] = ..., gain: _Optional[int] = ..., rain: _Optional[int] = ..., sea: _Optional[int] = ..., range: _Optional[int] = ..., scan_speed: _Optional[int] = ..., spokes: _Optional[_Union[Spokes, _Mapping]] = ...) -> None: ...
+    pose: Pose
+    def __init__(self, timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., state: _Optional[_Union[State, str]] = ..., gain: _Optional[int] = ..., rain: _Optional[int] = ..., sea: _Optional[int] = ..., range: _Optional[int] = ..., scan_speed: _Optional[int] = ..., spokes: _Optional[_Union[Spokes, _Mapping]] = ..., pose: _Optional[_Union[Pose, _Mapping]] = ...) -> None: ...
 
 class Command(_message.Message):
     __slots__ = ("command", "value")
