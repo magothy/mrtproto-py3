@@ -349,6 +349,16 @@ class ObstacleIf(_message.Message):
     point_of_interest: Position
     def __init__(self, id: _Optional[str] = ..., circle: _Optional[_Union[ObstacleIf.Circle, _Mapping]] = ..., polygon: _Optional[_Union[ObstacleIf.Polygon, _Mapping]] = ..., zone_type: _Optional[_Union[ObstacleIf.ZoneType, str]] = ..., is_stationary: bool = ..., lifespan_s: _Optional[float] = ..., course_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ..., point_of_interest: _Optional[_Union[Position, _Mapping]] = ...) -> None: ...
 
+class Obstacles(_message.Message):
+    __slots__ = ("ttag_system", "ttag_steady_ns", "obstacles")
+    TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
+    TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
+    OBSTACLES_FIELD_NUMBER: _ClassVar[int]
+    ttag_system: _timestamp_pb2.Timestamp
+    ttag_steady_ns: int
+    obstacles: _containers.RepeatedCompositeFieldContainer[ObstacleIf]
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., obstacles: _Optional[_Iterable[_Union[ObstacleIf, _Mapping]]] = ...) -> None: ...
+
 class Path(_message.Message):
     __slots__ = ("ttag_system", "ttag_steady_ns", "path", "obstacles", "speed_mps")
     TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
