@@ -360,7 +360,7 @@ class Obstacles(_message.Message):
     def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., obstacles: _Optional[_Iterable[_Union[ObstacleIf, _Mapping]]] = ...) -> None: ...
 
 class Path(_message.Message):
-    __slots__ = ("ttag_system", "ttag_steady_ns", "path", "obstacles", "speed_mps", "start", "end_local", "end_global")
+    __slots__ = ("ttag_system", "ttag_steady_ns", "path", "obstacles", "speed_mps", "start", "end_local", "end_global", "global_path")
     TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
     TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
     PATH_FIELD_NUMBER: _ClassVar[int]
@@ -369,6 +369,7 @@ class Path(_message.Message):
     START_FIELD_NUMBER: _ClassVar[int]
     END_LOCAL_FIELD_NUMBER: _ClassVar[int]
     END_GLOBAL_FIELD_NUMBER: _ClassVar[int]
+    GLOBAL_PATH_FIELD_NUMBER: _ClassVar[int]
     ttag_system: _timestamp_pb2.Timestamp
     ttag_steady_ns: int
     path: _containers.RepeatedCompositeFieldContainer[Position]
@@ -377,7 +378,8 @@ class Path(_message.Message):
     start: Position
     end_local: Position
     end_global: Position
-    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., path: _Optional[_Iterable[_Union[Position, _Mapping]]] = ..., obstacles: _Optional[_Iterable[_Union[ObstacleIf, _Mapping]]] = ..., speed_mps: _Optional[float] = ..., start: _Optional[_Union[Position, _Mapping]] = ..., end_local: _Optional[_Union[Position, _Mapping]] = ..., end_global: _Optional[_Union[Position, _Mapping]] = ...) -> None: ...
+    global_path: _containers.RepeatedCompositeFieldContainer[Position]
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., path: _Optional[_Iterable[_Union[Position, _Mapping]]] = ..., obstacles: _Optional[_Iterable[_Union[ObstacleIf, _Mapping]]] = ..., speed_mps: _Optional[float] = ..., start: _Optional[_Union[Position, _Mapping]] = ..., end_local: _Optional[_Union[Position, _Mapping]] = ..., end_global: _Optional[_Union[Position, _Mapping]] = ..., global_path: _Optional[_Iterable[_Union[Position, _Mapping]]] = ...) -> None: ...
 
 class VehicleStateIf(_message.Message):
     __slots__ = ("ttag_ns", "vehicle_data", "mode", "health_items", "fault_response")
