@@ -7,13 +7,25 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class Error(_message.Message):
+    __slots__ = ("x", "y", "z")
+    X_FIELD_NUMBER: _ClassVar[int]
+    Y_FIELD_NUMBER: _ClassVar[int]
+    Z_FIELD_NUMBER: _ClassVar[int]
+    x: float
+    y: float
+    z: float
+    def __init__(self, x: _Optional[float] = ..., y: _Optional[float] = ..., z: _Optional[float] = ...) -> None: ...
+
 class Position(_message.Message):
-    __slots__ = ("latitude_deg", "longitude_deg")
+    __slots__ = ("latitude_deg", "longitude_deg", "error_m")
     LATITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
     LONGITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
+    ERROR_M_FIELD_NUMBER: _ClassVar[int]
     latitude_deg: float
     longitude_deg: float
-    def __init__(self, latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ...) -> None: ...
+    error_m: Error
+    def __init__(self, latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ..., error_m: _Optional[_Union[Error, _Mapping]] = ...) -> None: ...
 
 class AngularRate(_message.Message):
     __slots__ = ("x_dps", "y_dps", "z_dps")
@@ -46,14 +58,16 @@ class MagneticField(_message.Message):
     def __init__(self, x_gauss: _Optional[float] = ..., y_gauss: _Optional[float] = ..., z_gauss: _Optional[float] = ...) -> None: ...
 
 class Euler(_message.Message):
-    __slots__ = ("roll_deg", "pitch_deg", "heading_deg")
+    __slots__ = ("roll_deg", "pitch_deg", "heading_deg", "error_deg")
     ROLL_DEG_FIELD_NUMBER: _ClassVar[int]
     PITCH_DEG_FIELD_NUMBER: _ClassVar[int]
     HEADING_DEG_FIELD_NUMBER: _ClassVar[int]
+    ERROR_DEG_FIELD_NUMBER: _ClassVar[int]
     roll_deg: float
     pitch_deg: float
     heading_deg: float
-    def __init__(self, roll_deg: _Optional[float] = ..., pitch_deg: _Optional[float] = ..., heading_deg: _Optional[float] = ...) -> None: ...
+    error_deg: Error
+    def __init__(self, roll_deg: _Optional[float] = ..., pitch_deg: _Optional[float] = ..., heading_deg: _Optional[float] = ..., error_deg: _Optional[_Union[Error, _Mapping]] = ...) -> None: ...
 
 class BodyVelocity(_message.Message):
     __slots__ = ("x_mps", "y_mps", "z_mps")
@@ -258,7 +272,7 @@ class InsIf(_message.Message):
     def __init__(self, angular_rate: _Optional[_Union[AngularRate, _Mapping]] = ..., acceleration: _Optional[_Union[Acceleration, _Mapping]] = ..., magfield: _Optional[_Union[MagneticField, _Mapping]] = ..., euler: _Optional[_Union[Euler, _Mapping]] = ..., body_velocity: _Optional[_Union[BodyVelocity, _Mapping]] = ..., position: _Optional[_Union[Position, _Mapping]] = ..., inertial_velocity: _Optional[_Union[InertialVelocity, _Mapping]] = ...) -> None: ...
 
 class GpsIf(_message.Message):
-    __slots__ = ("rmc_data", "gga_data")
+    __slots__ = ("rmc_data", "gga_data", "gst_data")
     class RmcData(_message.Message):
         __slots__ = ("latitude_deg", "longitude_deg", "ground_speed_kt", "course_true_deg")
         LATITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
@@ -303,11 +317,22 @@ class GpsIf(_message.Message):
         num_satellite: int
         fix_quality: GpsIf.GgaData.FixQuality
         def __init__(self, latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ..., altitude_m: _Optional[float] = ..., num_satellite: _Optional[int] = ..., fix_quality: _Optional[_Union[GpsIf.GgaData.FixQuality, str]] = ...) -> None: ...
+    class GstData(_message.Message):
+        __slots__ = ("std_latitude_error_m", "std_longitude_error_m", "std_altitude_error_m")
+        STD_LATITUDE_ERROR_M_FIELD_NUMBER: _ClassVar[int]
+        STD_LONGITUDE_ERROR_M_FIELD_NUMBER: _ClassVar[int]
+        STD_ALTITUDE_ERROR_M_FIELD_NUMBER: _ClassVar[int]
+        std_latitude_error_m: float
+        std_longitude_error_m: float
+        std_altitude_error_m: float
+        def __init__(self, std_latitude_error_m: _Optional[float] = ..., std_longitude_error_m: _Optional[float] = ..., std_altitude_error_m: _Optional[float] = ...) -> None: ...
     RMC_DATA_FIELD_NUMBER: _ClassVar[int]
     GGA_DATA_FIELD_NUMBER: _ClassVar[int]
+    GST_DATA_FIELD_NUMBER: _ClassVar[int]
     rmc_data: GpsIf.RmcData
     gga_data: GpsIf.GgaData
-    def __init__(self, rmc_data: _Optional[_Union[GpsIf.RmcData, _Mapping]] = ..., gga_data: _Optional[_Union[GpsIf.GgaData, _Mapping]] = ...) -> None: ...
+    gst_data: GpsIf.GstData
+    def __init__(self, rmc_data: _Optional[_Union[GpsIf.RmcData, _Mapping]] = ..., gga_data: _Optional[_Union[GpsIf.GgaData, _Mapping]] = ..., gst_data: _Optional[_Union[GpsIf.GstData, _Mapping]] = ...) -> None: ...
 
 class ObstacleIf(_message.Message):
     __slots__ = ("id", "circle", "polygon", "zone_type", "is_stationary", "lifespan_s", "course_deg", "speed_mps", "point_of_interest")
