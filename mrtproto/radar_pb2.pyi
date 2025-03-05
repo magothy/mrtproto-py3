@@ -42,14 +42,18 @@ COMMAND_SET_RANGE: CommandType
 COMMAND_SET_GAIN: CommandType
 
 class Pose(_message.Message):
-    __slots__ = ("lat_deg", "lon_deg", "heading_deg")
+    __slots__ = ("lat_deg", "lon_deg", "heading_deg", "position_covariance", "heading_error_deg")
     LAT_DEG_FIELD_NUMBER: _ClassVar[int]
     LON_DEG_FIELD_NUMBER: _ClassVar[int]
     HEADING_DEG_FIELD_NUMBER: _ClassVar[int]
+    POSITION_COVARIANCE_FIELD_NUMBER: _ClassVar[int]
+    HEADING_ERROR_DEG_FIELD_NUMBER: _ClassVar[int]
     lat_deg: float
     lon_deg: float
     heading_deg: float
-    def __init__(self, lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., heading_deg: _Optional[float] = ...) -> None: ...
+    position_covariance: _containers.RepeatedScalarFieldContainer[float]
+    heading_error_deg: float
+    def __init__(self, lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., heading_deg: _Optional[float] = ..., position_covariance: _Optional[_Iterable[float]] = ..., heading_error_deg: _Optional[float] = ...) -> None: ...
 
 class Spokes(_message.Message):
     __slots__ = ("num_spoke", "first_spoke_index", "range_m", "spokes")
