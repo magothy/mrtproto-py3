@@ -55,7 +55,7 @@ class Frame(_message.Message):
     def __init__(self, frame_number: _Optional[int] = ..., ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., prediction_duration_ms: _Optional[int] = ..., predictions: _Optional[_Iterable[_Union[FramePrediction, _Mapping]]] = ...) -> None: ...
 
 class OccupancyMap(_message.Message):
-    __slots__ = ("ttag_system", "ttag_steady_ns", "type", "lat_deg", "lon_deg", "width_m", "height_m", "width_px", "height_px", "grid")
+    __slots__ = ("ttag_system", "ttag_steady_ns", "type", "scope", "compression", "lat_deg", "lon_deg", "tl_lat_deg", "tl_lon_deg", "br_lat_deg", "br_lon_deg", "width_m", "height_m", "width_px", "height_px", "grid")
     class Type(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
         __slots__ = ()
         UNKNOWN: _ClassVar[OccupancyMap.Type]
@@ -66,11 +66,35 @@ class OccupancyMap(_message.Message):
     EMPTY: OccupancyMap.Type
     OCCUPIED: OccupancyMap.Type
     MERGED: OccupancyMap.Type
+    class Scope(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = ()
+        LOCAL: _ClassVar[OccupancyMap.Scope]
+        GLOBAL: _ClassVar[OccupancyMap.Scope]
+    LOCAL: OccupancyMap.Scope
+    GLOBAL: OccupancyMap.Scope
+    class Compression(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = ()
+        RAW: _ClassVar[OccupancyMap.Compression]
+        GZ: _ClassVar[OccupancyMap.Compression]
+        ZSTD: _ClassVar[OccupancyMap.Compression]
+        JPEG: _ClassVar[OccupancyMap.Compression]
+        PNG: _ClassVar[OccupancyMap.Compression]
+    RAW: OccupancyMap.Compression
+    GZ: OccupancyMap.Compression
+    ZSTD: OccupancyMap.Compression
+    JPEG: OccupancyMap.Compression
+    PNG: OccupancyMap.Compression
     TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
     TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
     TYPE_FIELD_NUMBER: _ClassVar[int]
+    SCOPE_FIELD_NUMBER: _ClassVar[int]
+    COMPRESSION_FIELD_NUMBER: _ClassVar[int]
     LAT_DEG_FIELD_NUMBER: _ClassVar[int]
     LON_DEG_FIELD_NUMBER: _ClassVar[int]
+    TL_LAT_DEG_FIELD_NUMBER: _ClassVar[int]
+    TL_LON_DEG_FIELD_NUMBER: _ClassVar[int]
+    BR_LAT_DEG_FIELD_NUMBER: _ClassVar[int]
+    BR_LON_DEG_FIELD_NUMBER: _ClassVar[int]
     WIDTH_M_FIELD_NUMBER: _ClassVar[int]
     HEIGHT_M_FIELD_NUMBER: _ClassVar[int]
     WIDTH_PX_FIELD_NUMBER: _ClassVar[int]
@@ -79,11 +103,17 @@ class OccupancyMap(_message.Message):
     ttag_system: _timestamp_pb2.Timestamp
     ttag_steady_ns: int
     type: OccupancyMap.Type
+    scope: OccupancyMap.Scope
+    compression: OccupancyMap.Compression
     lat_deg: float
     lon_deg: float
+    tl_lat_deg: float
+    tl_lon_deg: float
+    br_lat_deg: float
+    br_lon_deg: float
     width_m: float
     height_m: float
     width_px: int
     height_px: int
     grid: bytes
-    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., type: _Optional[_Union[OccupancyMap.Type, str]] = ..., lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., width_m: _Optional[float] = ..., height_m: _Optional[float] = ..., width_px: _Optional[int] = ..., height_px: _Optional[int] = ..., grid: _Optional[bytes] = ...) -> None: ...
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., type: _Optional[_Union[OccupancyMap.Type, str]] = ..., scope: _Optional[_Union[OccupancyMap.Scope, str]] = ..., compression: _Optional[_Union[OccupancyMap.Compression, str]] = ..., lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., tl_lat_deg: _Optional[float] = ..., tl_lon_deg: _Optional[float] = ..., br_lat_deg: _Optional[float] = ..., br_lon_deg: _Optional[float] = ..., width_m: _Optional[float] = ..., height_m: _Optional[float] = ..., width_px: _Optional[int] = ..., height_px: _Optional[int] = ..., grid: _Optional[bytes] = ...) -> None: ...
