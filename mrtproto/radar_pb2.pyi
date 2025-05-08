@@ -26,6 +26,8 @@ class CommandType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     COMMAND_TURN_OFF: _ClassVar[CommandType]
     COMMAND_SET_RANGE: _ClassVar[CommandType]
     COMMAND_SET_GAIN: _ClassVar[CommandType]
+    COMMAND_SET_RAIN: _ClassVar[CommandType]
+    COMMAND_SET_SEA: _ClassVar[CommandType]
 STATE_OFF: State
 STATE_STANDBY: State
 STATE_WARMING_UP: State
@@ -40,6 +42,8 @@ COMMAND_TURN_ON: CommandType
 COMMAND_TURN_OFF: CommandType
 COMMAND_SET_RANGE: CommandType
 COMMAND_SET_GAIN: CommandType
+COMMAND_SET_RAIN: CommandType
+COMMAND_SET_SEA: CommandType
 
 class Pose(_message.Message):
     __slots__ = ("lat_deg", "lon_deg", "heading_deg", "position_covariance", "heading_error_deg")
