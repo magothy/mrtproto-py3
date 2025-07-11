@@ -117,3 +117,57 @@ class OccupancyMap(_message.Message):
     height_px: int
     grid: bytes
     def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., type: _Optional[_Union[OccupancyMap.Type, str]] = ..., scope: _Optional[_Union[OccupancyMap.Scope, str]] = ..., compression: _Optional[_Union[OccupancyMap.Compression, str]] = ..., lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., tl_lat_deg: _Optional[float] = ..., tl_lon_deg: _Optional[float] = ..., br_lat_deg: _Optional[float] = ..., br_lon_deg: _Optional[float] = ..., width_m: _Optional[float] = ..., height_m: _Optional[float] = ..., width_px: _Optional[int] = ..., height_px: _Optional[int] = ..., grid: _Optional[bytes] = ...) -> None: ...
+
+class ObjectPosition(_message.Message):
+    __slots__ = ("latitude_deg", "longitude_deg", "z_m")
+    LATITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
+    LONGITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
+    Z_M_FIELD_NUMBER: _ClassVar[int]
+    latitude_deg: float
+    longitude_deg: float
+    z_m: float
+    def __init__(self, latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ..., z_m: _Optional[float] = ...) -> None: ...
+
+class ObjectVelocity(_message.Message):
+    __slots__ = ("vx_mps", "vy_mps", "vz_mps")
+    VX_MPS_FIELD_NUMBER: _ClassVar[int]
+    VY_MPS_FIELD_NUMBER: _ClassVar[int]
+    VZ_MPS_FIELD_NUMBER: _ClassVar[int]
+    vx_mps: float
+    vy_mps: float
+    vz_mps: float
+    def __init__(self, vx_mps: _Optional[float] = ..., vy_mps: _Optional[float] = ..., vz_mps: _Optional[float] = ...) -> None: ...
+
+class ObjectTrack(_message.Message):
+    __slots__ = ("ttag_system", "ttag_steady_ns", "track_id", "branch_id", "source_id", "age_s", "position", "velocity", "covariance")
+    TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
+    TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
+    TRACK_ID_FIELD_NUMBER: _ClassVar[int]
+    BRANCH_ID_FIELD_NUMBER: _ClassVar[int]
+    SOURCE_ID_FIELD_NUMBER: _ClassVar[int]
+    AGE_S_FIELD_NUMBER: _ClassVar[int]
+    POSITION_FIELD_NUMBER: _ClassVar[int]
+    VELOCITY_FIELD_NUMBER: _ClassVar[int]
+    COVARIANCE_FIELD_NUMBER: _ClassVar[int]
+    ttag_system: _timestamp_pb2.Timestamp
+    ttag_steady_ns: int
+    track_id: int
+    branch_id: int
+    source_id: int
+    age_s: float
+    position: ObjectPosition
+    velocity: ObjectVelocity
+    covariance: _containers.RepeatedScalarFieldContainer[float]
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., track_id: _Optional[int] = ..., branch_id: _Optional[int] = ..., source_id: _Optional[int] = ..., age_s: _Optional[float] = ..., position: _Optional[_Union[ObjectPosition, _Mapping]] = ..., velocity: _Optional[_Union[ObjectVelocity, _Mapping]] = ..., covariance: _Optional[_Iterable[float]] = ...) -> None: ...
+
+class ObjectTrackList(_message.Message):
+    __slots__ = ("ttag_system", "ttag_steady_ns", "source_id", "tracks")
+    TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
+    TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
+    SOURCE_ID_FIELD_NUMBER: _ClassVar[int]
+    TRACKS_FIELD_NUMBER: _ClassVar[int]
+    ttag_system: _timestamp_pb2.Timestamp
+    ttag_steady_ns: int
+    source_id: int
+    tracks: _containers.RepeatedCompositeFieldContainer[ObjectTrack]
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., source_id: _Optional[int] = ..., tracks: _Optional[_Iterable[_Union[ObjectTrack, _Mapping]]] = ...) -> None: ...
