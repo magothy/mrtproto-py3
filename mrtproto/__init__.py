@@ -1,3 +1,3 @@
-__version__ = "17.76"
-proto_sha1 = "e64b854d274dea5c839eb5cdad0a2c22cd3d0938"
-proto_conan_version = "v17"
+__version__ = "18.77"
+proto_sha1 = "ba792ae00490ab1511fd90810bffbbc6431a9717"
+proto_conan_version = "v18"

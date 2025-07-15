@@ -129,36 +129,38 @@ class ObjectPosition(_message.Message):
     def __init__(self, latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ..., z_m: _Optional[float] = ...) -> None: ...
 
 class ObjectVelocity(_message.Message):
-    __slots__ = ("vx_mps", "vy_mps", "vz_mps")
-    VX_MPS_FIELD_NUMBER: _ClassVar[int]
-    VY_MPS_FIELD_NUMBER: _ClassVar[int]
-    VZ_MPS_FIELD_NUMBER: _ClassVar[int]
-    vx_mps: float
-    vy_mps: float
-    vz_mps: float
-    def __init__(self, vx_mps: _Optional[float] = ..., vy_mps: _Optional[float] = ..., vz_mps: _Optional[float] = ...) -> None: ...
+    __slots__ = ("heading_deg", "speed_mps")
+    HEADING_DEG_FIELD_NUMBER: _ClassVar[int]
+    SPEED_MPS_FIELD_NUMBER: _ClassVar[int]
+    heading_deg: float
+    speed_mps: float
+    def __init__(self, heading_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ...) -> None: ...
 
 class ObjectTrack(_message.Message):
-    __slots__ = ("ttag_system", "ttag_steady_ns", "track_id", "branch_id", "source_id", "age_s", "position", "velocity", "covariance")
+    __slots__ = ("ttag_system", "ttag_steady_ns", "track_id", "branch_id", "source_id", "update_count", "position", "velocity", "covariance", "is_confirmed", "is_predicted")
     TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
     TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
     TRACK_ID_FIELD_NUMBER: _ClassVar[int]
     BRANCH_ID_FIELD_NUMBER: _ClassVar[int]
     SOURCE_ID_FIELD_NUMBER: _ClassVar[int]
-    AGE_S_FIELD_NUMBER: _ClassVar[int]
+    UPDATE_COUNT_FIELD_NUMBER: _ClassVar[int]
     POSITION_FIELD_NUMBER: _ClassVar[int]
     VELOCITY_FIELD_NUMBER: _ClassVar[int]
     COVARIANCE_FIELD_NUMBER: _ClassVar[int]
+    IS_CONFIRMED_FIELD_NUMBER: _ClassVar[int]
+    IS_PREDICTED_FIELD_NUMBER: _ClassVar[int]
     ttag_system: _timestamp_pb2.Timestamp
     ttag_steady_ns: int
     track_id: int
     branch_id: int
     source_id: int
-    age_s: float
+    update_count: float
     position: ObjectPosition
     velocity: ObjectVelocity
     covariance: _containers.RepeatedScalarFieldContainer[float]
-    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., track_id: _Optional[int] = ..., branch_id: _Optional[int] = ..., source_id: _Optional[int] = ..., age_s: _Optional[float] = ..., position: _Optional[_Union[ObjectPosition, _Mapping]] = ..., velocity: _Optional[_Union[ObjectVelocity, _Mapping]] = ..., covariance: _Optional[_Iterable[float]] = ...) -> None: ...
+    is_confirmed: bool
+    is_predicted: bool
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., track_id: _Optional[int] = ..., branch_id: _Optional[int] = ..., source_id: _Optional[int] = ..., update_count: _Optional[float] = ..., position: _Optional[_Union[ObjectPosition, _Mapping]] = ..., velocity: _Optional[_Union[ObjectVelocity, _Mapping]] = ..., covariance: _Optional[_Iterable[float]] = ..., is_confirmed: bool = ..., is_predicted: bool = ...) -> None: ...
 
 class ObjectTrackList(_message.Message):
     __slots__ = ("ttag_system", "ttag_steady_ns", "source_id", "tracks")
