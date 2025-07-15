@@ -154,13 +154,13 @@ class ObjectTrack(_message.Message):
     track_id: int
     branch_id: int
     source_id: int
-    update_count: float
+    update_count: int
     position: ObjectPosition
     velocity: ObjectVelocity
     covariance: _containers.RepeatedScalarFieldContainer[float]
     is_confirmed: bool
     is_predicted: bool
-    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., track_id: _Optional[int] = ..., branch_id: _Optional[int] = ..., source_id: _Optional[int] = ..., update_count: _Optional[float] = ..., position: _Optional[_Union[ObjectPosition, _Mapping]] = ..., velocity: _Optional[_Union[ObjectVelocity, _Mapping]] = ..., covariance: _Optional[_Iterable[float]] = ..., is_confirmed: bool = ..., is_predicted: bool = ...) -> None: ...
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., track_id: _Optional[int] = ..., branch_id: _Optional[int] = ..., source_id: _Optional[int] = ..., update_count: _Optional[int] = ..., position: _Optional[_Union[ObjectPosition, _Mapping]] = ..., velocity: _Optional[_Union[ObjectVelocity, _Mapping]] = ..., covariance: _Optional[_Iterable[float]] = ..., is_confirmed: bool = ..., is_predicted: bool = ...) -> None: ...
 
 class ObjectTrackList(_message.Message):
     __slots__ = ("ttag_system", "ttag_steady_ns", "source_id", "tracks")
