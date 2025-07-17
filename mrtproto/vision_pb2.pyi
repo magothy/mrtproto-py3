@@ -137,15 +137,18 @@ class ObjectVelocity(_message.Message):
     def __init__(self, heading_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ...) -> None: ...
 
 class ObjectTrack(_message.Message):
-    __slots__ = ("ttag_system", "ttag_steady_ns", "track_id", "branch_id", "source_id", "update_count", "position", "velocity", "covariance", "is_confirmed", "is_predicted")
+    __slots__ = ("ttag_system", "ttag_steady_ns", "track_id", "branch_id", "source_id", "update_count", "age_s", "latitude_deg", "longitude_deg", "heading_deg", "speed_mps", "covariance", "is_confirmed", "is_predicted")
     TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
     TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
     TRACK_ID_FIELD_NUMBER: _ClassVar[int]
     BRANCH_ID_FIELD_NUMBER: _ClassVar[int]
     SOURCE_ID_FIELD_NUMBER: _ClassVar[int]
     UPDATE_COUNT_FIELD_NUMBER: _ClassVar[int]
-    POSITION_FIELD_NUMBER: _ClassVar[int]
-    VELOCITY_FIELD_NUMBER: _ClassVar[int]
+    AGE_S_FIELD_NUMBER: _ClassVar[int]
+    LATITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
+    LONGITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
+    HEADING_DEG_FIELD_NUMBER: _ClassVar[int]
+    SPEED_MPS_FIELD_NUMBER: _ClassVar[int]
     COVARIANCE_FIELD_NUMBER: _ClassVar[int]
     IS_CONFIRMED_FIELD_NUMBER: _ClassVar[int]
     IS_PREDICTED_FIELD_NUMBER: _ClassVar[int]
@@ -155,12 +158,15 @@ class ObjectTrack(_message.Message):
     branch_id: int
     source_id: int
     update_count: int
-    position: ObjectPosition
-    velocity: ObjectVelocity
+    age_s: float
+    latitude_deg: float
+    longitude_deg: float
+    heading_deg: float
+    speed_mps: float
     covariance: _containers.RepeatedScalarFieldContainer[float]
     is_confirmed: bool
     is_predicted: bool
-    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., track_id: _Optional[int] = ..., branch_id: _Optional[int] = ..., source_id: _Optional[int] = ..., update_count: _Optional[int] = ..., position: _Optional[_Union[ObjectPosition, _Mapping]] = ..., velocity: _Optional[_Union[ObjectVelocity, _Mapping]] = ..., covariance: _Optional[_Iterable[float]] = ..., is_confirmed: bool = ..., is_predicted: bool = ...) -> None: ...
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., track_id: _Optional[int] = ..., branch_id: _Optional[int] = ..., source_id: _Optional[int] = ..., update_count: _Optional[int] = ..., age_s: _Optional[float] = ..., latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ..., heading_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ..., covariance: _Optional[_Iterable[float]] = ..., is_confirmed: bool = ..., is_predicted: bool = ...) -> None: ...
 
 class ObjectTrackList(_message.Message):
     __slots__ = ("ttag_system", "ttag_steady_ns", "source_id", "tracks")
