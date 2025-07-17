@@ -118,24 +118,6 @@ class OccupancyMap(_message.Message):
     grid: bytes
     def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., type: _Optional[_Union[OccupancyMap.Type, str]] = ..., scope: _Optional[_Union[OccupancyMap.Scope, str]] = ..., compression: _Optional[_Union[OccupancyMap.Compression, str]] = ..., lat_deg: _Optional[float] = ..., lon_deg: _Optional[float] = ..., tl_lat_deg: _Optional[float] = ..., tl_lon_deg: _Optional[float] = ..., br_lat_deg: _Optional[float] = ..., br_lon_deg: _Optional[float] = ..., width_m: _Optional[float] = ..., height_m: _Optional[float] = ..., width_px: _Optional[int] = ..., height_px: _Optional[int] = ..., grid: _Optional[bytes] = ...) -> None: ...
 
-class ObjectPosition(_message.Message):
-    __slots__ = ("latitude_deg", "longitude_deg", "z_m")
-    LATITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
-    LONGITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
-    Z_M_FIELD_NUMBER: _ClassVar[int]
-    latitude_deg: float
-    longitude_deg: float
-    z_m: float
-    def __init__(self, latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ..., z_m: _Optional[float] = ...) -> None: ...
-
-class ObjectVelocity(_message.Message):
-    __slots__ = ("heading_deg", "speed_mps")
-    HEADING_DEG_FIELD_NUMBER: _ClassVar[int]
-    SPEED_MPS_FIELD_NUMBER: _ClassVar[int]
-    heading_deg: float
-    speed_mps: float
-    def __init__(self, heading_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ...) -> None: ...
-
 class ObjectTrack(_message.Message):
     __slots__ = ("ttag_system", "ttag_steady_ns", "track_id", "branch_id", "source_id", "update_count", "age_s", "latitude_deg", "longitude_deg", "heading_deg", "speed_mps", "covariance", "is_confirmed", "is_predicted")
     TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
