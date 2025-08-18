@@ -170,7 +170,7 @@ class Vertex(_message.Message):
     longitude_deg: float
     def __init__(self, latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ...) -> None: ...
 
-class TrackingZone(_message.Message):
+class TrackingFence(_message.Message):
     __slots__ = ("ttag_system", "ttag_steady_ns", "vertices")
     TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
     TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
