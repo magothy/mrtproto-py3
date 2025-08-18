@@ -161,3 +161,21 @@ class ObjectTrackList(_message.Message):
     source_id: int
     tracks: _containers.RepeatedCompositeFieldContainer[ObjectTrack]
     def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., source_id: _Optional[int] = ..., tracks: _Optional[_Iterable[_Union[ObjectTrack, _Mapping]]] = ...) -> None: ...
+
+class Vertex(_message.Message):
+    __slots__ = ("latitude_deg", "longitude_deg")
+    LATITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
+    LONGITUDE_DEG_FIELD_NUMBER: _ClassVar[int]
+    latitude_deg: float
+    longitude_deg: float
+    def __init__(self, latitude_deg: _Optional[float] = ..., longitude_deg: _Optional[float] = ...) -> None: ...
+
+class TrackingZone(_message.Message):
+    __slots__ = ("ttag_system", "ttag_steady_ns", "vertices")
+    TTAG_SYSTEM_FIELD_NUMBER: _ClassVar[int]
+    TTAG_STEADY_NS_FIELD_NUMBER: _ClassVar[int]
+    VERTICES_FIELD_NUMBER: _ClassVar[int]
+    ttag_system: _timestamp_pb2.Timestamp
+    ttag_steady_ns: int
+    vertices: _containers.RepeatedCompositeFieldContainer[Vertex]
+    def __init__(self, ttag_system: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., ttag_steady_ns: _Optional[int] = ..., vertices: _Optional[_Iterable[_Union[Vertex, _Mapping]]] = ...) -> None: ...
