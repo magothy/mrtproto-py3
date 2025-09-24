@@ -310,13 +310,21 @@ class GpsIf(_message.Message):
     def __init__(self, rmc_data: _Optional[_Union[GpsIf.RmcData, _Mapping]] = ..., gga_data: _Optional[_Union[GpsIf.GgaData, _Mapping]] = ...) -> None: ...
 
 class ObstacleIf(_message.Message):
-    __slots__ = ("id", "circle", "polygon", "zone_type", "is_stationary", "lifespan_s", "course_deg", "speed_mps", "point_of_interest")
+    __slots__ = ("id", "circle", "polygon", "zone_type", "is_stationary", "lifespan_s", "course_deg", "speed_mps", "point_of_interest", "intent_type")
     class ZoneType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
         __slots__ = ()
         ZONE_KEEP_OUT: _ClassVar[ObstacleIf.ZoneType]
         ZONE_KEEP_IN: _ClassVar[ObstacleIf.ZoneType]
     ZONE_KEEP_OUT: ObstacleIf.ZoneType
     ZONE_KEEP_IN: ObstacleIf.ZoneType
+    class IntentType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = ()
+        FRIENDLY: _ClassVar[ObstacleIf.IntentType]
+        HOSTILE: _ClassVar[ObstacleIf.IntentType]
+        UNKNOWN: _ClassVar[ObstacleIf.IntentType]
+    FRIENDLY: ObstacleIf.IntentType
+    HOSTILE: ObstacleIf.IntentType
+    UNKNOWN: ObstacleIf.IntentType
     class Circle(_message.Message):
         __slots__ = ("origin", "radius_m")
         ORIGIN_FIELD_NUMBER: _ClassVar[int]
@@ -338,6 +346,7 @@ class ObstacleIf(_message.Message):
     COURSE_DEG_FIELD_NUMBER: _ClassVar[int]
     SPEED_MPS_FIELD_NUMBER: _ClassVar[int]
     POINT_OF_INTEREST_FIELD_NUMBER: _ClassVar[int]
+    INTENT_TYPE_FIELD_NUMBER: _ClassVar[int]
     id: str
     circle: ObstacleIf.Circle
     polygon: ObstacleIf.Polygon
@@ -347,7 +356,8 @@ class ObstacleIf(_message.Message):
     course_deg: float
     speed_mps: float
     point_of_interest: Position
-    def __init__(self, id: _Optional[str] = ..., circle: _Optional[_Union[ObstacleIf.Circle, _Mapping]] = ..., polygon: _Optional[_Union[ObstacleIf.Polygon, _Mapping]] = ..., zone_type: _Optional[_Union[ObstacleIf.ZoneType, str]] = ..., is_stationary: bool = ..., lifespan_s: _Optional[float] = ..., course_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ..., point_of_interest: _Optional[_Union[Position, _Mapping]] = ...) -> None: ...
+    intent_type: ObstacleIf.IntentType
+    def __init__(self, id: _Optional[str] = ..., circle: _Optional[_Union[ObstacleIf.Circle, _Mapping]] = ..., polygon: _Optional[_Union[ObstacleIf.Polygon, _Mapping]] = ..., zone_type: _Optional[_Union[ObstacleIf.ZoneType, str]] = ..., is_stationary: bool = ..., lifespan_s: _Optional[float] = ..., course_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ..., point_of_interest: _Optional[_Union[Position, _Mapping]] = ..., intent_type: _Optional[_Union[ObstacleIf.IntentType, str]] = ...) -> None: ...
 
 class Obstacles(_message.Message):
     __slots__ = ("ttag_system", "ttag_steady_ns", "obstacles")
