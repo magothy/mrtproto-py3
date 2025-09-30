@@ -319,12 +319,12 @@ class ObstacleIf(_message.Message):
     ZONE_KEEP_IN: ObstacleIf.ZoneType
     class IntentType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
         __slots__ = ()
+        UNKNOWN: _ClassVar[ObstacleIf.IntentType]
         FRIENDLY: _ClassVar[ObstacleIf.IntentType]
         HOSTILE: _ClassVar[ObstacleIf.IntentType]
-        UNKNOWN: _ClassVar[ObstacleIf.IntentType]
+    UNKNOWN: ObstacleIf.IntentType
     FRIENDLY: ObstacleIf.IntentType
     HOSTILE: ObstacleIf.IntentType
-    UNKNOWN: ObstacleIf.IntentType
     class Circle(_message.Message):
         __slots__ = ("origin", "radius_m")
         ORIGIN_FIELD_NUMBER: _ClassVar[int]
